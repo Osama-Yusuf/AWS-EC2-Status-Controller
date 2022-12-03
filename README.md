@@ -51,7 +51,7 @@ Eg: aws_ec2 start us-east-1 i-050b7d36ad76bddea     starts a specific instance i
 
 ---
 
-## Donations
+## Support 
 
  If you want to support this project, please consider donating:
  * PayPal: https://paypal.me/OsamaYusuf
