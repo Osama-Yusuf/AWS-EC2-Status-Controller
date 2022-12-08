@@ -64,5 +64,5 @@ Eg: aws_ec2 start us-east-1 i-050b7d36ad76bddea     starts a specific instance i
 * `Thanks for reading`
 
 -------
-##### Report bugs for "Git-Repo-Pusher"
+##### Report bugs for "AWS-EC2-Status-Controller"
 * `osama9mohamed5@gmail.com`
