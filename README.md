@@ -51,16 +51,17 @@ sudo mv notify_ec2.sh /usr/local/bin/notify_ec2
 ```
 
 ### Usage:
+This will send you a mail if there's any instance running
 ```bash
-notify_ec2
+notify_ec2 yourmail@gmail.com
 ```
 You can create a cronjob to run this script every 12HRS or on reboot to notify you if there's any instance running
 ```bash
 crontab -e
 ```
 ```bash
-0 */12 * * * notify_ec2
-@reboot notify_ec2
+0 */12 * * * notify_ec2 yourmail@gmail.com
+@reboot notify_ec2 yourmail@gmail.com
 ```
 
 ---

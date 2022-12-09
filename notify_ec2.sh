@@ -1,6 +1,6 @@
 ec2 scan save && clear 
 
-read -p "Please enter gmail account you want to notify ex.(user@gmail.com): " email 
+# read -p "Please enter gmail account you want to notify ex.(user@gmail.com): " email 
 inst_path="$HOME/running_instances.txt"
 running_inst=$(grep running ~/.aws/regions/scan | awk '{print $2 " - " $7}' | sort | uniq -c | sed 's/,//g') # print running instances types and names
 date=$(date +%F) # print date without time and seconds and time zone
@@ -43,26 +43,26 @@ EOF
 }
 # ----------------------👆 This function installs and configures ssmtp if triggered 👆---------------------- #
 
-# check if $running_inst has "large" or "xlarge" in it and if it does, then send an email to $email
+# -----check if $running_inst has "large" or "xlarge" in it and if it does, then send an email to $email
 # if echo "$running_inst" | grep -q "large" || echo "$running_inst" | grep -q "xlarge"; then
-
-echo "Sending email to $email"
-# ------------------------ check if ssmtp is installed ----------------------- #
-if ! [ -x "$(command -v ssmtp)" ]; then
-    echo "Error: ssmtp is not installed." >&2 && echo
-    instal_smtp
+# check if $running_inst has value and if it does, then send an email to $email
+if [ -n "$running_inst" ]; then
+    echo "Sending email to $1..."
+    # ------------------------ check if ssmtp is installed ----------------------- #
+    if ! [ -x "$(command -v ssmtp)" ]; then
+        echo "Error: ssmtp is not installed." >&2 && echo
+        instal_smtp
+    fi
+    # -------------------- check if ~/.aws/regions/scan exists ------------------- #
+    if ! [ -f ~/.aws/regions/scan ]; then
+        echo "Error: ~/.aws/regions/scan does not exist." >&2 && echo
+        echo -e 'Please run:\nec2 scan save'
+        exit 1
+    fi
+    # --------------------------------- send mail -------------------------------- #
+    echo -e "The following AWS instance are currently running:\n\n$(cat $inst_path)" | mail -s "Warning running instances" $1
+    # rm mail.txt
+    # ------------------------------- or with ssmtp ------------------------------ #
+    # echo -e "Subject: Warning large/xlarge instances\n\nThe following AWS instance are currently running:\n\n$(cat $inst_path)" | ssmtp $email
 fi
-# -------------------- check if ~/.aws/regions/scan exists ------------------- #
-if ! [ -f ~/.aws/regions/scan ]; then
-    echo "Error: ~/.aws/regions/scan does not exist." >&2 && echo
-    echo -e 'Please run:\nec2 scan save'
-    exit 1
-fi
-# --------------------------------- send mail -------------------------------- #
-echo -e "The following AWS instance are currently running:\n\n$(cat $inst_path)" | mail -s "Warning running instances" $email
-# rm mail.txt
-# ------------------------------- or with ssmtp ------------------------------ #
-# echo -e "Subject: Warning large/xlarge instances\n\nThe following AWS instance are currently running:\n\n$(cat $inst_path)" | ssmtp $email
-
-# fi
 
