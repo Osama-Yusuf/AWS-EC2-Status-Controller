@@ -11,6 +11,7 @@ You can take a look at the [GitHub project page](https://github.com/Osama-Yusuf/
 * Check later for regions scanned by ./ec2status.py regions
 * prints public IP and private IP of instances
 * prints instance id, intance type and state of instances
+* send mail to notify you if there's any instance running with the ability to change this to notify you only if there's any large/xlarge instance running
 
 ---
 
