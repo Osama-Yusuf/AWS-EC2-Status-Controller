@@ -24,7 +24,7 @@ instal_smtp(){
     read -p "Please enter the (AuthPass) new password you've just created: " AuthPass && echo
     if [ -z "$AuthPass" ]; then
         echo "Error: AuthPass is empty" >&2 && echo
-        exit 1
+        instal_smtp
     fi
 # ----------------- 👇 configure smtp 👇 ----------------- #
     cat <<EOF > ssmtp.conf
@@ -60,7 +60,7 @@ if ! [ -f ~/.aws/regions/scan ]; then
 fi
 # --------------------------------- send mail -------------------------------- #
 echo -e "The following AWS instance are currently running:\n\n$(cat $inst_path)" | mail -s "Warning large/xlarge instances" $email
-rm mail.txt
+# rm mail.txt
 # ------------------------------- or with ssmtp ------------------------------ #
 # echo -e "Subject: Warning large/xlarge instances\n\nThe following AWS instance are currently running:\n\n$(cat $inst_path)" | ssmtp $email
 
