@@ -1,6 +1,6 @@
 ec2 scan save && clear
 
-email="osama9mohamed5@gmail.com"
+read -p "Please enter gmail account you want to notify ex.(user@gmail.com): " email 
 inst_path="$HOME/running_instances.txt"
 running_inst=$(grep running ~/.aws/regions/scan | awk '{print $2 " - " $7}' | sort | uniq -c | sed 's/,//g') # print running instances types and names
 date=$(date +%F) # print date without time and seconds and time zone

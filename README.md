@@ -19,7 +19,7 @@ You can take a look at the [GitHub project page](https://github.com/Osama-Yusuf/
 ### Install:
 ```
 curl "https://raw.githubusercontent.com/Osama-Yusuf/AWS-EC2-Controler/main/DevOps/Automations.sh/aws_ec2.sh" -o aws_ec2.sh && chmod +x aws_ec2.sh
-sudo mv aws_ec2.sh /usr/local/bin/aws_ec2
+sudo mv aws_ec2.sh /usr/local/bin/ec2
 ```
 
 ### Usage:
