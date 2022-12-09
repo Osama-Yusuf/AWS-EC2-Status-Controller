@@ -27,7 +27,7 @@ instal_smtp(){
         exit 1
     fi
 # ----------------- 👇 configure smtp 👇 ----------------- #
-    cat <<EOF > /etc/ssmtp/ssmtp.conf
+    cat <<EOF > ssmtp.conf
 root=$root
 mailhub=smtp.gmail.com:465
 rewriteDomain=gmail.com
@@ -36,9 +36,10 @@ AuthPass=$AuthPass
 FromLineOverride=YES
 UseTLS=YES
 EOF
+    sudo mv ssmtp.conf /etc/ssmtp/ssmtp.conf
 # ----------------- 👆 configure smtp 👆 ----------------- #
     # ------install dependencies------ #
-    apt-get install libio-socket-ssl-perl libnet-ssleay-perl sendemail mailutils
+    sudo apt-get install libio-socket-ssl-perl libnet-ssleay-perl sendemail mailutils
 }
 # ----------------------👆 This function installs and configures ssmtp if triggered 👆---------------------- #
 
