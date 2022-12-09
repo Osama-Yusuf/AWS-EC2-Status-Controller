@@ -51,7 +51,10 @@ sudo mv notify_ec2.sh /usr/local/bin/notify_ec2
 ```
 
 ### Usage:
-you can create a cronjob to run this script every 12HRS or on reboot to notify you if there's any instance running
+```bash
+notify_ec2
+```
+You can create a cronjob to run this script every 12HRS or on reboot to notify you if there's any instance running
 ```bash
 crontab -e
 ```
