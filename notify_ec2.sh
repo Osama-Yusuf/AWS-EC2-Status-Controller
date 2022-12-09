@@ -1,4 +1,5 @@
-ec2 scan save && clear 
+ec2 scan save
+clear 
 
 # read -p "Please enter gmail account you want to notify ex.(user@gmail.com): " email 
 inst_path="$HOME/running_instances.txt"
@@ -6,7 +7,7 @@ running_inst=$(grep running ~/.aws/regions/scan | awk '{print $2 " - " $7}' | so
 date=$(date +%F) # print date without time and seconds and time zone
 
 echo -e "$date:\n$running_inst\n----------------------------------------" >> $inst_path
-cat $inst_path
+# cat $inst_path
 
 # ----------------------👇 This function installs and configures ssmtp if triggered 👇---------------------- #
 instal_smtp(){
