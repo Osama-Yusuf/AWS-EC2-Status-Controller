@@ -17,9 +17,10 @@ You can take a look at the [GitHub project page](https://github.com/Osama-Yusuf/
 
 ## Getting started:
 
+### 1. aws_ec2.sh:
 ### Install:
-```
-curl "https://raw.githubusercontent.com/Osama-Yusuf/AWS-EC2-Controler/main/DevOps/Automations.sh/aws_ec2.sh" -o aws_ec2.sh && chmod +x aws_ec2.sh
+```bash
+curl "https://raw.githubusercontent.com/Osama-Yusuf/AWS-EC2-Status-Controller/main/aws_ec2.sh" -o aws_ec2.sh && chmod +x aws_ec2.sh
 sudo mv aws_ec2.sh /usr/local/bin/ec2
 ```
 
@@ -40,6 +41,23 @@ aws_ec2
 
 Eg: aws_ec2 start us-east-1                         starts all instances in us-east-1
 Eg: aws_ec2 start us-east-1 i-050b7d36ad76bddea     starts a specific instance in us-east-1
+```
+
+### 2. notify_ec2.sh
+### Install:
+```bash
+curl "https://raw.githubusercontent.com/Osama-Yusuf/AWS-EC2-Status-Controller/main/notify_ec2.sh" -o notify_ec2.sh && chmod +x notify_ec2.sh
+sudo mv notify_ec2.sh /usr/local/bin/notify_ec2
+```
+
+### Usage:
+you can create a cronjob to run this script every 12HRS or on reboot to notify you if there's any instance running
+```bash
+crontab -e
+```
+```bash
+0 */12 * * * notify_ec2
+@reboot notify_ec2
 ```
 
 ---

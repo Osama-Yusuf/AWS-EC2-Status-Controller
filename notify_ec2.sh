@@ -59,7 +59,7 @@ if ! [ -f ~/.aws/regions/scan ]; then
     exit 1
 fi
 # --------------------------------- send mail -------------------------------- #
-echo -e "The following AWS instance are currently running:\n\n$(cat $inst_path)" | mail -s "Warning large/xlarge instances" $email
+echo -e "The following AWS instance are currently running:\n\n$(cat $inst_path)" | mail -s "Warning running instances" $email
 # rm mail.txt
 # ------------------------------- or with ssmtp ------------------------------ #
 # echo -e "Subject: Warning large/xlarge instances\n\nThe following AWS instance are currently running:\n\n$(cat $inst_path)" | ssmtp $email
