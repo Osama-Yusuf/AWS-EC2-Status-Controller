@@ -70,8 +70,9 @@ if [ "$2" == "save" ]; then
         # if there is, then remove them
         rm $rgs_dir/*.txt
     fi
-	echo "Scanning in progress..."
+	echo "Scanning in progress..." && echo
 	rm $rgs_dir/scan > /dev/null 2>&1
+	echo "This scan was taken on $(date +%F)" > $rgs_dir/scan
 	scan "$@"
 	cat $rgs_dir/scan
 	exit 1
