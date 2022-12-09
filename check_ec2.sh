@@ -13,6 +13,7 @@ instal_smtp(){
     # ------First install ssmtp------ #
     sudo apt-get install ssmtp
     # ------Then lets configure it by editing the ssmtp.conf file with values from input prompt------ #
+    echo
     read -p "Please enter your gmail account ex.(user@gmail.com): " root 
     AuthUser=$(echo $root | sed 's/@gmail.com//g')
     # ---------------------- How to generate gmail app pass ---------------- #
