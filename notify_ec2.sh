@@ -1,4 +1,4 @@
-ec2 scan save && clear
+ec2 scan save && clear 
 
 read -p "Please enter gmail account you want to notify ex.(user@gmail.com): " email 
 inst_path="$HOME/running_instances.txt"
