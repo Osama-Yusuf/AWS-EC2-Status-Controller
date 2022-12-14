@@ -5,13 +5,24 @@ You can take a look at the [GitHub project page](https://github.com/Osama-Yusuf/
 
 ## Features
 
+[**aws_ec2.sh:**](#1-aws_ec2sh)
 * Scan all regions for instances
 * Saves scanned instances to a file for later use
 * Check, start, stop and terminate specific instances or all in a specific region 
 * Check later for regions scanned by ./ec2status.py regions
 * prints public IP and private IP of instances
 * prints instance id, intance type and state of instances
+
+[**notify_ec2.sh:**](#2-notify_ec2sh)
 * send mail to notify you if there's any instance running with the ability to change this to notify you only if there's any large/xlarge instance running
+* you can create a cronjob to run this script every 12HRS or on reboot to mail you if there's any instance running
+
+[**provision_ec2.sh:**](#3-provision_ec2sh)
+* Provision a new EC2 instance with custom region, instance type, key pair, volume_size, security group, and the name of the instance
+* creates a new key pair if it the one you specified as 3rd argument doesn't exist and saves it in the current directory or the directory you passed as the third argument
+* creates a new security group with the name you passed as the fifth argument and add inbound rule to allow all traffic from your ip only to the instance
+* creates a new volume with the size you passed as the fourth argument and attach it to the instance
+* creates a name you passed as the fifth argument for the instance
 
 ---
 
@@ -64,6 +75,24 @@ crontab -e
 @reboot notify_ec2 yourmail@gmail.com
 ```
 
+### 3. provision_ec2.sh:
+### Install:
+```bash
+curl "https://raw.githubusercontent.com/Osama-Yusuf/AWS-EC2-Status-Controller/main/provision_ec2.sh" -o provision_ec2.sh && chmod +x provision_ec2.sh
+sudo mv provision_ec2.sh /usr/local/bin/provision
+```
+
+### Usage:
+This will provision ec2 with custom region, instance type, key pair, volume_size, security group, and the name of the instance
+```bash
+provision <1-region> <2-instance_type> <3-key_name.pem> <4-volume_size> <5-tag>
+```
+NP: the numbers indicated above is just to help you write the values in the right order, do not write them before the value
+
+E.g.:
+```bash
+provision us-east-1 t2.micro key_name.pem 20 my_instance
+```
 ---
 
 ## Tested Environments
