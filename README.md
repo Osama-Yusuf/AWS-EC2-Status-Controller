@@ -1,5 +1,5 @@
 # AWS EC2 Status Controller
-**AWS EC2 Status Controller** are a bunch of **BASH** scripts for scanning, starting, stopping, and terminating instances in Amazon Web Services.
+**AWS EC2 Status Controller** is a bunch of **BASH** scripts for scanning, starting, stopping, and terminating instances in Amazon Web Services.
 
 if there's any instance running, it will send you a mail to notify you.
 
