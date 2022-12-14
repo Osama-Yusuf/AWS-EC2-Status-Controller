@@ -6,7 +6,7 @@ You can take a look at the [GitHub project page](https://github.com/Osama-Yusuf/
 ## Features
 
 [**aws_ec2.sh:**](#1-aws_ec2sh)
-* Scan all regions for instances
+* Scan all regions for launched instances (whether they are running or not)
 * Saves scanned instances to a file for later use
 * Check, start, stop and terminate specific instances or all in a specific region 
 * Check later for regions scanned by ./ec2status.py regions
