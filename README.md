@@ -70,13 +70,36 @@ This will send you a mail if there's any instance running
 ```bash
 notify_ec2 yourmail@gmail.com
 ```
-You can create a cronjob to run this script every 12HRS or on reboot to notify you if there's any instance running
+To create a cronjob to execute this script every 12HRS or on reboot to notify you if there's any instance running, you must do the following first:
+
+a- execute the script for the first time to install any missing dependencies and to configure ssmtp
+```bash
+./notify_ec2.sh yourmail@gmail.com
+OR 
+notify_ec2 yourmail@gmail.com
+```
+b- To avoid cronjob errors delete unnecessary parts of script copy paste the following in /usr/local/bin/notify_ec2:
+```bash
+ec2 scan save
+inst_path="$HOME/running_instances.txt"
+running_inst=$(grep running ~/.aws/regions/scan | awk '{print $2 " - " $7}' | sort | uniq -c | sed 's/,//g')
+date=$(date +%F)
+echo -e "$date:\n$running_inst\n----------------------------------------" >> $inst_path
+if [ -n "$running_inst" ]; then
+    echo "Sending email to $1..."
+    echo -e "The following AWS instance are currently running:\n\n$(cat $inst_path)" | mail -s "Warning running instances" $1
+else
+    echo "there're no instance running in aws"
+fi
+```
+c- open crontab editor with vim
 ```bash
 crontab -e
 ```
+d- add any line of the following lines in the vim editor
 ```bash
-0 */12 * * * notify_ec2 yourmail@gmail.com
-@reboot notify_ec2 yourmail@gmail.com
+0 */12 * * * /bin/bash /usr/local/bin/notify_ec2 yourmail@gmail.com >> /home/<your_user>/output.txt
+@reboot /bin/bash /usr/local/bin/notify_ec2 yourmail@gmail.com >> /home/<your_user>/output.txt
 ```
 
 ### 3. provision_ec2.sh:
