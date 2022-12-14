@@ -66,14 +66,13 @@ while ! nc -z $PUBLIC_IP 22; do
 done
 
 # ---------- stop and enable virtualization then start the instance ---------- #
-aws ec2 stop-instances --region $1 --instance-ids $INSTANCE_ID
-aws ec2 wait instance-stopped --region $1 --instance-ids $INSTANCE_ID && echo "stopped"
-aws ec2 modify-instance-attribute --region $1 --instance-id $INSTANCE_ID --ena-support
-aws ec2 start-instances --region $1 --instance-ids $INSTANCE_ID
-aws ec2 wait instance-running --region $1 --instance-ids $INSTANCE_ID && echo "running"
-PUBLIC_IP=$(aws ec2 describe-instances --region $1 --instance-ids $INSTANCE_ID --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
-echo && echo "Instance $INSTANCE_ID is running with public ip $PUBLIC_IP"
-
+# aws ec2 stop-instances --region $1 --instance-ids $INSTANCE_ID
+# aws ec2 wait instance-stopped --region $1 --instance-ids $INSTANCE_ID && echo "stopped"
+# aws ec2 modify-instance-attribute --region $1 --instance-id $INSTANCE_ID --ena-support
+# aws ec2 start-instances --region $1 --instance-ids $INSTANCE_ID
+# aws ec2 wait instance-running --region $1 --instance-ids $INSTANCE_ID && echo "running"
+# PUBLIC_IP=$(aws ec2 describe-instances --region $1 --instance-ids $INSTANCE_ID --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
+# echo && echo "Instance $INSTANCE_ID is running with public ip $PUBLIC_IP"
 
 # ------------------------------ ssh to instance ----------------------------- #
 ssh -o StrictHostKeyChecking=no -i $3 ubuntu@$PUBLIC_IP
