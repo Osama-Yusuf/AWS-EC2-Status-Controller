@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$1" == "help" ] || [ "$1" == "-h" ] || [ "$1" == "--help" ] || [ -z "$1" ]; then
+    echo "Usage: $0 <your_email>"
+    exit 1
+fi
+
 ec2 scan save
 clear 
 
