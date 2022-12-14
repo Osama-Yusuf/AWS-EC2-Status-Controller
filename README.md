@@ -9,7 +9,7 @@ You can take a look at the [GitHub project page](https://github.com/Osama-Yusuf/
 * Scan all regions for launched instances (whether they are running or not)
 * Saves scanned instances to a file for later use
 * Check, start, stop and terminate specific instances or all in a specific region 
-* Check later for regions scanned by ./ec2status.py regions
+* Check for lanched instances by regions and print their info (instance id, instance type, state, public IP, private IP)
 * prints public IP and private IP of instances
 * prints instance id, intance type and state of instances
 
