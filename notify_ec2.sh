@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ec2 scan save
 clear 
 
